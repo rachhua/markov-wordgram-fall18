@@ -1,4 +1,4 @@
-YOUR NAME and YOUR NETID
+RACHEL HUA RLH49
 
 Run WordGramDiver for wordgrams of size 2-10 and record
 the number of WordGram values/objects that occur more than
