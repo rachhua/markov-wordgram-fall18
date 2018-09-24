@@ -15,12 +15,13 @@ values of WSIZE
 WSIZE    # duplicates
 2        60,453
 3        10,756
-4
-5
-7
-8
-9
-10
+4		 1,987
+5		 667
+6		 362
+7		 226
+8		 151
+9		 105
+10		 73
 
 =====
 Explain in your own words the conceptual differences between 
@@ -30,10 +31,26 @@ Answer these questions:
 (1) Why the results of these methods should be the same in 
 terms of changes made to the HashSet parameter.
 
+Results should be the same because both benchmark and benchmarkShift
+refer to the same object with the same hashCode. Since this object is 
+immutable, changes to the HashSet parameter would not effect the results.
+
 (2) What are the conceptual differences between the two
 benchmarking methods
+
+benchmarkShift uses to shiftAdd method to iterate through
+the array, whereas benchmark just regularly goes through 
+the array in increments of WSIZE.
 
 (3) Is the total amount of memory allocated for arrays
 the same or different in the two methods? Account for
 arrays created in the methods and arrays created by
 WordGram objects. Try to be quantitative in answering.
+
+Different. I created an array and a list in benchmark,
+but just an array in benchmarkShift. Thus, more memory
+was allocated to benchmark compared to benchmarkShift.
+Furthermore, benchmark takes in a huge array of the entire file,
+whereas benchmarkShift just takes in the WSIZE then one word
+at a time using shiftAdd.
+
