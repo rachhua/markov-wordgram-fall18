@@ -32,15 +32,23 @@ Answer these questions:
 terms of changes made to the HashSet parameter.
 
 Results should be the same because both benchmark and benchmarkShift
-refer to the same object with the same hashCode. Since this object is 
-immutable, changes to the HashSet parameter would not effect the results.
+ultimately make wordgrams out of the text in the file, even though
+they do it in different ways. Since both methods take in the same file
+and create wordgrams out of the same Strings in the file, the two
+HashSets they create should be identical. 
 
 (2) What are the conceptual differences between the two
 benchmarking methods
 
-benchmarkShift uses to shiftAdd method to iterate through
-the array, whereas benchmark just regularly goes through 
-the array in increments of WSIZE.
+benchmark scans and puts the entire text file into an array
+then uses a for-loop in increments of WSIZE to create wordgrams from
+said array.
+
+benchmarkShift does not scan the entire text file into an array,
+but rather scans from the text in increments of WSIZE. It then
+uses the shiftAdd method in a while loop to iterate through the
+rest of the file to make new wordgrams.
+
 
 (3) Is the total amount of memory allocated for arrays
 the same or different in the two methods? Account for
@@ -50,7 +58,8 @@ WordGram objects. Try to be quantitative in answering.
 Different. I created an array and a list in benchmark,
 but just an array in benchmarkShift. Thus, more memory
 was allocated to benchmark compared to benchmarkShift.
-Furthermore, benchmark takes in a huge array of the entire file,
-whereas benchmarkShift just takes in the WSIZE then one word
-at a time using shiftAdd.
+Furthermore, benchmark takes in a huge array of the entire text file
+(which uses a lot more memory), whereas benchmarkShift 
+just takes in an array of WSIZE and iterates one word at a time 
+using shiftAdd.
 
